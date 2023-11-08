@@ -1,0 +1,65 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+body {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.youtube-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 25px;
+  padding: 25px;
+}
+
+.youtube-image {
+  height: 250px;
+  margin-bottom: 15px;
+}
+
+.youtube-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.youtube-footer {
+  display: flex;
+  align-items: center;
+  gap: 0 25px;
+}
+
+.youtube-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.youtube-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.youtube-author {
+  font-size: 14px;
+  font-weight: 400;
+  color: #999;
+}
