@@ -6,6 +6,12 @@
   background-color: #2979ff;
   border-radius: 8px;
   width: 300px;
-  border: none;
+  border: 1px solid transparent;
   outline: none;
+  &--secondary {
+    @extend .button;
+    background-color: white;
+    color: #2979ff;
+    border-color: #2979ff;
+  }
 }

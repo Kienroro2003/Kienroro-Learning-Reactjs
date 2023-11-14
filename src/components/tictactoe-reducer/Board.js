@@ -4,13 +4,13 @@ import Cell from "./Cell";
 const Board = (props) => {
   return (
     <div className="game-board">
-      {props.cells.map((item, index) => {
+      {props.board.map((item, index) => {
         return (
           <Cell
-            key={index}
             value={item}
+            key={index}
             onClick={() => props.onClick(index)}
-            className={item === "X" ? "is-x" : item === "O" ? "is-o" : ""}
+            className={item === "x" ? "is-x" : item === "o" ? "is-o" : ""}
           ></Cell>
         );
       })}

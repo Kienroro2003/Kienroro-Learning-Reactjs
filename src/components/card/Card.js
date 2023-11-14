@@ -68,7 +68,7 @@ const Card = (props) => {
   const CardTitle = styled.h3`
     font-size: 18px;
     font-weight: 500;
-    color: ${props => props.theme.colors.blue};
+    color: ${(props) => props.theme.colors.blue};
   `;
 
   const CardAmount = styled.span`
