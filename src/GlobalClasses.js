@@ -10,4 +10,9 @@ export const GlobalClasses = css`
     justify-content: space-between;
     align-items: center;
   }
+
+  input,
+  textarea {
+    outline: none;
+  }
 `;

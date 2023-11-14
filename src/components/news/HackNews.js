@@ -54,6 +54,7 @@ const HackNews = () => {
   };
 
   useEffect(() => {
+    console.log("🚀 ~ file: HackNews.js:58 ~ useEffect ~ url:", url);
     handleFetchData.current();
   }, [url]);
   return (
