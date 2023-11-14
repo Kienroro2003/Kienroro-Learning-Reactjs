@@ -20,6 +20,8 @@ import SimpleClock from "./components/clock/SimpleClock";
 import Input from "./components/input/Input";
 import TextareaAutoResize from "./components/textarea/TextareaAutoResize";
 import Dropdown from "./components/dropdown/Dropdown";
+import Blog from "./components/blog/Blog";
+import BlogCustomHook from "./components/blog/BlogCustomHook";
 
 function App() {
   return (
@@ -44,7 +46,9 @@ function App() {
       {/* <Input></Input> */}
       {/* <TextareaAutoResize></TextareaAutoResize> */}
       {/* <Counter></Counter> */}
-      <Dropdown></Dropdown>
+      {/* <Dropdown></Dropdown> */}
+      {/* <Blog></Blog> */}
+      <BlogCustomHook></BlogCustomHook>
     </div>
   );
 }
