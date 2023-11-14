@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import "./style.css";
 
 const Input = () => {
   const divRef = useRef();

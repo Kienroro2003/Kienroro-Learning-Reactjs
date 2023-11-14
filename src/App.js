@@ -17,7 +17,7 @@ import Card from "./components/card/Card";
 import PhotoClone from "./components/photo/PhotoClone";
 import HackNewsReducer from "./components/news/HackNewsReducer";
 import SimpleClock from "./components/clock/SimpleClock";
-import Input from "./components/input/Input";
+// import Input from "./components/input/Input";
 import TextareaAutoResize from "./components/textarea/TextareaAutoResize";
 import Dropdown from "./components/dropdown/Dropdown";
 import Blog from "./components/blog/Blog";
@@ -27,6 +27,9 @@ import HackNewCustomHook from "./components/news/HackNewCustomHook";
 import DropdownCustomHook from "./components/dropdown/DropdownCustomHook";
 import useClickOutSide from "./hooks/useClickOutSide";
 import SidebarMenu from "./components/sidebar/SidebarMenu";
+import Form from "./form/Form";
+import Form2 from "./form/Form2";
+import MovieSearchApp from "./components/movie/MovieSearchApp";
 
 function App() {
   const { show, nodeRef, setShow } = useClickOutSide();
@@ -38,7 +41,7 @@ function App() {
       {/* <ThemeProvider theme={theme}>
       </ThemeProvider> */}
       {/* <GlobalStyle></GlobalStyle> */}
-      <button
+      {/* <button
         className="bg-blue-500 text-white p-2"
         onClick={() => {
           console.log("Click");
@@ -46,7 +49,7 @@ function App() {
         }}
       >
         Primary button
-      </button>
+      </button> */}
       {/* <Button secondary>Secondary button</Button> */}
       {/* <Card></Card> */}
       {/* <Photos></Photos> */}
@@ -66,7 +69,10 @@ function App() {
       {/* <Blog></Blog> */}
       {/* <BlogCustomHook></BlogCustomHook> */}
       {/* <DropdownCustomHook ></DropdownCustomHook> */}
-      <SidebarMenu show={show} ref={nodeRef}></SidebarMenu>
+      {/* <SidebarMenu show={show} ref={nodeRef}></SidebarMenu> */}
+      {/* <Form></Form> */}
+      {/* <Form2></Form2> */}
+      <MovieSearchApp></MovieSearchApp>
     </div>
   );
 }
