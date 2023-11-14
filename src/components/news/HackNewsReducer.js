@@ -4,8 +4,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import lodash, { set } from "lodash";
 
-//https://hn.algolia.com/api/v1/search?query=react
-
 const initializeState = {
   hits: [],
   query: "react",
@@ -20,13 +18,6 @@ const hackNewReducer = (state, action) => {
       return { ...state, url: action.payload };
     }
     case "SET_DATA": {
-      //   const newState = JSON.parse(JSON.stringify(state));
-      //   const merge = [...newState.hits, ...action.payload];
-      //   newState.hits = merge;
-      //   console.log(
-      //     "🚀 ~ file: HackNewsReducer.js:26 ~ hackNewReducer ~ newState:",
-      //     newState
-      //   );
       return { ...state, hits: action.payload };
     }
     case "SET_LOADING": {
@@ -46,9 +37,6 @@ const hackNewReducer = (state, action) => {
 const HackNewsReducer = () => {
   const [state, dispatch] = useReducer(hackNewReducer, initializeState);
   const handleFetchData = useRef({});
-  // const handleUpdateQuery = lodash.debounce((event) => {
-  //   setQuery(event.target.value);
-  // }, 500)
   handleFetchData.current = async () => {
     try {
       dispatch({
@@ -56,10 +44,6 @@ const HackNewsReducer = () => {
         payload: true,
       });
       const response = await axios.get(state.url);
-      console.log(
-        "🚀 ~ file: HackNewsReducer.js:59 ~ handleFetchData.current= ~ response:",
-        response
-      );
       dispatch({
         type: "SET_DATA",
         payload: response.data.hits,

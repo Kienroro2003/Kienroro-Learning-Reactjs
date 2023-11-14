@@ -3,61 +3,15 @@ import React, { useRef } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import lodash from "lodash";
+import useHackerNewAPI from "../../hooks/useHackerNewAPI";
 
-//https://hn.algolia.com/api/v1/search?query=react
-
-const initializeState = {
-  hits: [],
-  query: "react",
-  isLoading: false,
-  errorMessage: "",
-  url: `https://hn.algolia.com/api/v1/search?query=''`,
-};
-
-const hackNewReducer = (state, action) => {
-  switch (action) {
-    case "click": {
-      break;
-    }
-
-    default:
-      break;
-  }
-};
-
-const HackNews = () => {
-  const [hits, setHits] = useState([]);
+const HackNewCustomHook = () => {
   const [query, setQuery] = useState("react");
-  const handleFetchData = useRef({});
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [url, setUrl] = useState(
-    "https://hn.algolia.com/api/v1/search?query=''"
+  const { data, isLoading, errorMessage, setUrl } = useHackerNewAPI(
+    "https://hn.algolia.com/api/v1/search?query=react",
+    { hits: [] }
   );
-  // const handleUpdateQuery = lodash.debounce((event) => {
-  //   setQuery(event.target.value);
-  // }, 500);
-  handleFetchData.current = async () => {
-    try {
-      setIsLoading(true);
-      const data = await axios.get(
-        `https://hn.algolia.com/api/v1/search?query=${query}`
-      );
-      setTimeout(() => {
-        setHits(data.data?.hits || []);
-        setIsLoading(false);
-      }, 3000);
-    } catch (error) {
-      console.log(error);
-      setIsLoading(false);
-      setErrorMessage(`the error happened ${error}`);
-    }
-  };
 
-  useEffect(() => {
-    console.log("🚀 ~ file: HackNews.js:58 ~ useEffect ~ url:", url);
-    handleFetchData.current();
-  }, [url]);
   return (
     <div className="bg-white shadow-md w-2/4 mx-auto my-5 p-5 rounded-lg">
       <div className="flex mb-5 gap-x-5">
@@ -83,7 +37,7 @@ const HackNews = () => {
       <div className="flex flex-wrap gap-5">
         {!isLoading &&
           !errorMessage &&
-          hits.map((item, index) => {
+          data.hits.map((item, index) => {
             if (!item.title || item.title.length <= 0) return null;
             return (
               <h3 className="p-3 bg-gray-100 rounded-md" key={index}>
@@ -96,4 +50,4 @@ const HackNews = () => {
   );
 };
 
-export default HackNews;
+export default HackNewCustomHook;

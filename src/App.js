@@ -22,16 +22,32 @@ import TextareaAutoResize from "./components/textarea/TextareaAutoResize";
 import Dropdown from "./components/dropdown/Dropdown";
 import Blog from "./components/blog/Blog";
 import BlogCustomHook from "./components/blog/BlogCustomHook";
+import { useState } from "react";
+import HackNewCustomHook from "./components/news/HackNewCustomHook";
+import DropdownCustomHook from "./components/dropdown/DropdownCustomHook";
+import useClickOutSide from "./hooks/useClickOutSide";
+import SidebarMenu from "./components/sidebar/SidebarMenu";
 
 function App() {
+  const { show, nodeRef, setShow } = useClickOutSide();
   return (
     <div>
+      {/* <button onClick={() => setShow(!show)}>Toggle show</button>
+      {show && <HackNewCustomHook></HackNewCustomHook>} */}
       {/* <div className="text-center text-lg">Hello World</div> */}
       {/* <ThemeProvider theme={theme}>
       </ThemeProvider> */}
       {/* <GlobalStyle></GlobalStyle> */}
-      {/* <Button>Primary button</Button>
-      <Button secondary>Secondary button</Button> */}
+      <button
+        className="bg-blue-500 text-white p-2"
+        onClick={() => {
+          console.log("Click");
+          setShow(!show);
+        }}
+      >
+        Primary button
+      </button>
+      {/* <Button secondary>Secondary button</Button> */}
       {/* <Card></Card> */}
       {/* <Photos></Photos> */}
       {/* <PhotoClone></PhotoClone> */}
@@ -48,7 +64,9 @@ function App() {
       {/* <Counter></Counter> */}
       {/* <Dropdown></Dropdown> */}
       {/* <Blog></Blog> */}
-      <BlogCustomHook></BlogCustomHook>
+      {/* <BlogCustomHook></BlogCustomHook> */}
+      {/* <DropdownCustomHook ></DropdownCustomHook> */}
+      <SidebarMenu show={show} ref={nodeRef}></SidebarMenu>
     </div>
   );
 }
