@@ -16,7 +16,6 @@ export default function useHackerNewAPI(initialUrl, initialData) {
       setData(() => res.data);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setErrorMessage(`the error happened ${error}`);
     }
