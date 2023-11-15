@@ -32,6 +32,9 @@ import Form2 from "./form/Form2";
 import MovieSearchApp from "./components/movie/MovieSearchApp";
 import SignUpForm from "./form/SignUpForm";
 import SignUpFormYup from "./form/SignUpFormYup";
+import SignUpFormV2 from "./form/SignUpFormV2";
+import SignUpFormFinal from "./form/SignUpFormFinal";
+import SignUpFormFinalV2 from "./form/SignUpFormFinalV2";
 
 function App() {
   const { show, nodeRef, setShow } = useClickOutSide();
@@ -76,7 +79,10 @@ function App() {
       {/* <Form2></Form2> */}
       {/* <MovieSearchApp></MovieSearchApp> */}
       {/* <SignUpForm></SignUpForm> */}
-      <SignUpFormYup></SignUpFormYup>
+      {/* <SignUpFormYup></SignUpFormYup> */}
+      {/* <SignUpFormV2></SignUpFormV2> */}
+      {/* <SignUpFormFinal></SignUpFormFinal> */}
+      <SignUpFormFinalV2></SignUpFormFinalV2>
     </div>
   );
 }
