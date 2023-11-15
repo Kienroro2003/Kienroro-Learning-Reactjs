@@ -27,63 +27,86 @@ const SignUpFormFinalV2 = () => {
         job: Yup.string(),
         terms: Yup.bool().oneOf([true], "Field must be checked"),
       })}
-      onSubmit={(values, action) => {
+      onSubmit={async (values, formik) => {
         console.log(
           "🚀 ~ file: SignUpFormFinalV2.js:31 ~ SignUpFormFinalV2 ~ action:",
-          action
+          formik
         );
-        setTimeout(() => {
-          action.setSubmitting(false);
-        });
+        await setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          formik.resetForm({
+            firstName: "",
+            lastName: "",
+            email: "",
+            intro: "",
+            job: "",
+            terms: false,
+          });
+          formik.setSubmitting(false);
+        }, 5000);
       }}
     >
-      <Form className="p-10 w-full max-w-[500px] mx-auto" autoComplete="off">
-        <MyInput
-          label="First name"
-          id="firstName"
-          name="firstName"
-          placeholder="Enter your first name"
-        ></MyInput>
-        <MyInput
-          label="Last name"
-          id="lastName"
-          name="lastName"
-          placeholder="Enter your last name"
-        ></MyInput>
-        <MyInput
-          label="Email"
-          id="email"
-          name="email"
-          type="email"
-          placeholder="Enter your email address"
-        ></MyInput>
-        <MyTextarea
-          label="Intro"
-          name="intro"
-          id="intro"
-          type="textarea"
-          placeholder="Introduce yourself..."
-        ></MyTextarea>
-        <MySelect label="Job" name="job" id="job" placeholder="Enter your job">
-          <option value="frontend">Frontend Developer</option>
-          <option value="backend">Backend Developer</option>
-          <option value="fullstack">Fullstack Developer</option>
-        </MySelect>
-        <MyCheckbox
-          name="terms"
-          id="terms"
-          type="checkbox"
-          children=" I accept the terms and conditions"
-        ></MyCheckbox>
-        <div>
-          <button
-            type="submit"
-            className="w-full p-4 bg-blue-600 text-white font-semibold rounded-lg"
+      {(formik) => {
+        console.log(formik);
+        return (
+          <Form
+            className="p-10 w-full max-w-[500px] mx-auto"
+            autoComplete="off"
           >
-            Submit
-          </button>
-        </div>
-      </Form>
+            <MyInput
+              label="First name"
+              id="firstName"
+              name="firstName"
+              placeholder="Enter your first name"
+            ></MyInput>
+            <MyInput
+              label="Last name"
+              id="lastName"
+              name="lastName"
+              placeholder="Enter your last name"
+            ></MyInput>
+            <MyInput
+              label="Email"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="Enter your email address"
+            ></MyInput>
+            <MyTextarea
+              label="Intro"
+              name="intro"
+              id="intro"
+              type="textarea"
+              placeholder="Introduce yourself..."
+            ></MyTextarea>
+            <MySelect
+              label="Job"
+              name="job"
+              id="job"
+              placeholder="Enter your job"
+            >
+              <option value="frontend">Frontend Developer</option>
+              <option value="backend">Backend Developer</option>
+              <option value="fullstack">Fullstack Developer</option>
+            </MySelect>
+            <MyCheckbox
+              name="terms"
+              id="terms"
+              type="checkbox"
+              children=" I accept the terms and conditions"
+            ></MyCheckbox>
+            <div>
+              <button
+                type="submit"
+                className="w-full p-4 bg-blue-600 text-white font-semibold rounded-lg"
+                disabled={formik.isSubmitting}
+              >
+                Submit
+              </button>
+            </div>
+          </Form>
+        );
+      }}
     </Formik>
   );
 };
