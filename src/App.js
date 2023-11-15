@@ -30,6 +30,8 @@ import SidebarMenu from "./components/sidebar/SidebarMenu";
 import Form from "./form/Form";
 import Form2 from "./form/Form2";
 import MovieSearchApp from "./components/movie/MovieSearchApp";
+import SignUpForm from "./form/SignUpForm";
+import SignUpFormYup from "./form/SignUpFormYup";
 
 function App() {
   const { show, nodeRef, setShow } = useClickOutSide();
@@ -72,7 +74,9 @@ function App() {
       {/* <SidebarMenu show={show} ref={nodeRef}></SidebarMenu> */}
       {/* <Form></Form> */}
       {/* <Form2></Form2> */}
-      <MovieSearchApp></MovieSearchApp>
+      {/* <MovieSearchApp></MovieSearchApp> */}
+      {/* <SignUpForm></SignUpForm> */}
+      <SignUpFormYup></SignUpFormYup>
     </div>
   );
 }
