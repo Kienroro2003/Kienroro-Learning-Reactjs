@@ -35,6 +35,7 @@ import SignUpFormYup from "./form/SignUpFormYup";
 import SignUpFormV2 from "./form/SignUpFormV2";
 import SignUpFormFinal from "./form/SignUpFormFinal";
 import SignUpFormFinalV2 from "./form/SignUpFormFinalV2";
+import SignUpFormHook from "./form/SignUpFormHook";
 
 function App() {
   const { show, nodeRef, setShow } = useClickOutSide();
@@ -82,7 +83,8 @@ function App() {
       {/* <SignUpFormYup></SignUpFormYup> */}
       {/* <SignUpFormV2></SignUpFormV2> */}
       {/* <SignUpFormFinal></SignUpFormFinal> */}
-      <SignUpFormFinalV2></SignUpFormFinalV2>
+      {/* <SignUpFormFinalV2></SignUpFormFinalV2> */}
+      <SignUpFormHook></SignUpFormHook>
     </div>
   );
 }
