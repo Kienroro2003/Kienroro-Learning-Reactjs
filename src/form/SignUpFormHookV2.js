@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import axios from "axios";
@@ -21,6 +21,7 @@ const SignUpFormHookV2 = () => {
     reset,
     watch,
     setValue,
+    control,
   } = useForm({ resolver: yupResolver(schema) });
   const watchField = watch("showAge", false);
   const onSubmit = async (values) => {
@@ -78,14 +79,14 @@ const SignUpFormHookV2 = () => {
         )}
       </div>
       <div className="flex flex-col gap-2 mb-5">
-        <label htmlFor="firstName">Email</label>
-        <input
+        <label htmlFor="email">Email</label>
+        <MyInput
           {...register("email")}
           type="email"
           id="email"
           placeholder="Enter your email"
-          className="p-4 rounded-md border border-gray-100"
-        />
+          control={control}
+        ></MyInput>
         {errors.email && (
           <div className="text-sm text-red-500">{errors?.email?.message}</div>
         )}
@@ -112,6 +113,23 @@ const SignUpFormHookV2 = () => {
         Demo
       </button>
     </form>
+  );
+};
+
+const MyInput = ({ control, ...props }) => {
+  return (
+    <Controller
+      name={props.name}
+      control={control}
+      defaultValue="kienroro@gmail.com"
+      render={({ field }) => (
+        <input
+          className="p-4 rounded-md border border-gray-100"
+          {...props}
+          {...field}
+        ></input>
+      )}
+    ></Controller>
   );
 };
 
