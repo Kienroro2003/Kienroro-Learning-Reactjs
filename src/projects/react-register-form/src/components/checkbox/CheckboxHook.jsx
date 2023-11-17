@@ -1,7 +1,6 @@
 import { useController } from "react-hook-form";
 
-const CheckboxHook = ({ control, ...props }) => {
-  console.log(control);
+const CheckboxHook = ({ control, text, ...props }) => {
   const { field } = useController({
     control,
     name: props.name,
@@ -9,8 +8,16 @@ const CheckboxHook = ({ control, ...props }) => {
 
   return (
     <label className="custom-checkbox cursor-pointer">
-      <input type="checkbox" {...field} hidden />
-      <div className="flex items-center justify-center">
+      <input
+        type="checkbox"
+        value={props.value}
+        className="hidden"
+        id={props.name}
+        checked={field.value}
+        {...field}
+        hidden
+      />
+      <div className="flex items-center justify-center gap-x-3">
         <div className="h-full w-full bg-white rounded-md custom-checkbox-square flex items-center justify-center">
           <svg
             width="16"
@@ -25,6 +32,9 @@ const CheckboxHook = ({ control, ...props }) => {
             />
           </svg>
         </div>
+        <label htmlFor={props.name} className="text-sm cursor-pointer">
+          {text}
+        </label>
       </div>
     </label>
   );
