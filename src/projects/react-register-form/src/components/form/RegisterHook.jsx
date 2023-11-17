@@ -83,10 +83,9 @@ const RegisterHook = () => {
       });
       reset();
     }
-    console.log(data);
   };
   const radioField = watch("gender");
-  console.log(radioField);
+  console.log("render");
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-[500px] mx-auto p-5">
       <div className="flex flex-col gap-1 mb-2">

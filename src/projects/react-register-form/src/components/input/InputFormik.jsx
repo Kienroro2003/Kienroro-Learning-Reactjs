@@ -2,7 +2,6 @@ import { useField } from "formik";
 import React from "react";
 
 const InputFormik = ({ label, ...props }) => {
-  console.log(props);
   const [field, meta] = useField(props);
   return (
     <div className="flex flex-col gap-1 mb-2">

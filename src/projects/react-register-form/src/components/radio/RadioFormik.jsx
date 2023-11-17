@@ -1,11 +1,19 @@
-import React from "react";
+import { useField } from "formik";
+import { useController } from "react-hook-form";
 
-const RadioFormik = () => {
+const RadioFormik = ({ label, ...props }) => {
+  const [field] = useField(props.name);
+
   return (
-    <label className="custom-radio cursor-pointer">
-      <input type="radio" hidden />
-      <div className="h-full w-full bg-white rounded-full"></div>
-    </label>
+    <>
+      <div className="flex items-center gap-x-3">
+        <label className="custom-radio cursor-pointer">
+          <input type="radio" {...field} {...props} hidden />
+          <div className="h-full w-full bg-white rounded-full"></div>
+        </label>
+        <span>{label}</span>
+      </div>
+    </>
   );
 };
 

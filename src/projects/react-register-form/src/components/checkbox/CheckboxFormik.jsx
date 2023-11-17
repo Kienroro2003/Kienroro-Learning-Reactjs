@@ -1,16 +1,22 @@
+import { useField } from "formik";
 import React from "react";
 
-const CheckboxFormik = ({ text, ...props }) => {
+const CheckboxFormik = ({ text, setFieldValue, ...props }) => {
+  const [field, meta] = useField(props);
+  console.log(
+    "🚀 ~ file: CheckboxFormik.jsx:6 ~ CheckboxFormik ~ field:",
+    field
+  );
   return (
     <label className="custom-checkbox cursor-pointer">
       <input
         type="checkbox"
-        value={props.value}
-        className="hidden"
-        id={props.name}
+        checked={field.value}
+        {...field}
+        {...props}
         hidden
       />
-      <div className="flex items-center justify-center gap-x-3">
+      <div className="flex items-center gap-x-3">
         <div className="h-full w-full bg-white rounded-md custom-checkbox-square flex items-center justify-center">
           <svg
             width="16"
@@ -25,7 +31,10 @@ const CheckboxFormik = ({ text, ...props }) => {
             />
           </svg>
         </div>
-        <label htmlFor={props.name} className="text-sm cursor-pointer">
+        <label
+          htmlFor={props.id || props.name}
+          className="text-sm cursor-pointer"
+        >
           {text}
         </label>
       </div>
