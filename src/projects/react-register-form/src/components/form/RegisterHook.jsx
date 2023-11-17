@@ -85,6 +85,8 @@ const RegisterHook = () => {
     }
     console.log(data);
   };
+  const radioField = watch("gender");
+  console.log(radioField);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="w-[500px] mx-auto p-5">
       <div className="flex flex-col gap-1 mb-2">
@@ -130,7 +132,7 @@ const RegisterHook = () => {
         <div className="flex items-center gap-5">
           <div className="flex items-center gap-x-3">
             <RadioHook
-              defaultChecked={true}
+              checked={radioField === "male"}
               name="gender"
               control={control}
               value="male"
@@ -139,6 +141,7 @@ const RegisterHook = () => {
           </div>
           <div className="flex items-center gap-x-3">
             <RadioHook
+              checked={radioField === "female"}
               name="gender"
               control={control}
               value="female"
