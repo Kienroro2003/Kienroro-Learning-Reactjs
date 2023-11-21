@@ -4,6 +4,10 @@ export default function useClickOutSide(dom = "button") {
   const nodeRef = useRef(null);
   const [show, setShow] = useState(false);
   useEffect(() => {
+    console.log(
+      "🚀 ~ file: useClickOutSide.js:6 ~ useClickOutSide ~ nodeRef:",
+      nodeRef
+    );
     function handleClickOutSideDropdown(e) {
       if (
         nodeRef.current &&

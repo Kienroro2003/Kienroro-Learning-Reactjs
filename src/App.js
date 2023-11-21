@@ -38,19 +38,21 @@ import SignUpFormFinalV2 from "./form/SignUpFormFinalV2";
 import SignUpFormHook from "./form/SignUpFormHook";
 import SignUpFormHookV2 from "./form/SignUpFormHookV2";
 import SignUpFormHookV3 from "./form/SignUpFormHookV3";
+import Modal from "./components/modal/Modal";
 
 function App() {
+  const [show, setShow] = useState(false);
   // const { show, nodeRef, setShow } = useClickOutSide();
   return (
     <div>
       {/* <button onClick={() => setShow(!show)}>Toggle show</button>
       {show && <HackNewCustomHook></HackNewCustomHook>} */}
-      {/* <div className="text-center text-lg">Hello World</div> */}
+      {/* <div className="text-lg text-center">Hello World</div> */}
       {/* <ThemeProvider theme={theme}>
       </ThemeProvider> */}
       {/* <GlobalStyle></GlobalStyle> */}
       {/* <button
-        className="bg-blue-500 text-white p-2"
+        className="p-2 text-white bg-blue-500"
         onClick={() => {
           console.log("Click");
           setShow(!show);
@@ -88,7 +90,14 @@ function App() {
       {/* <SignUpFormFinalV2></SignUpFormFinalV2> */}
       {/* <SignUpFormHook></SignUpFormHook> */}
       {/* <SignUpFormHookV2></SignUpFormHookV2> */}
-      <SignUpFormHookV3></SignUpFormHookV3>
+      {/* <SignUpFormHookV3></SignUpFormHookV3> */}
+      <Modal open={show} handleClose={() => setShow(false)}></Modal>
+      <button
+        onClick={() => setShow(true)}
+        className="p-5 m-3 text-white bg-purple-500 rounded-lg"
+      >
+        Show button
+      </button>
     </div>
   );
 }

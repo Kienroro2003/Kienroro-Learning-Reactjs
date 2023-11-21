@@ -97,7 +97,7 @@ const RegisterHook = () => {
           placeholder="Enter your username"
         />
         {errors && errors?.username && (
-          <p className="text-red-500 text-xs">{errors.username.message}</p>
+          <p className="text-xs text-red-500">{errors.username.message}</p>
         )}
       </div>
       <div className="flex flex-col gap-1 mb-2">
@@ -110,7 +110,7 @@ const RegisterHook = () => {
           type="password"
         />
         {errors && errors?.password && (
-          <p className="text-red-500 text-xs">{errors.password.message}</p>
+          <p className="text-xs text-red-500">{errors.password.message}</p>
         )}
       </div>
       <div className="flex flex-col gap-1 mb-2">
@@ -123,7 +123,7 @@ const RegisterHook = () => {
           placeholder="Enter your email"
         />
         {errors && errors?.email && (
-          <p className="text-red-500 text-xs">{errors.email.message}</p>
+          <p className="text-xs text-red-500">{errors.email.message}</p>
         )}
       </div>
       <div className="flex flex-col gap-1 mb-2">
@@ -149,7 +149,7 @@ const RegisterHook = () => {
           </div>
         </div>
         {errors && errors?.gender && (
-          <p className="text-red-500 text-xs">{errors.gender.message}</p>
+          <p className="text-xs text-red-500">{errors.gender.message}</p>
         )}
       </div>
       <div className="flex flex-col gap-1 mb-2">
@@ -161,7 +161,7 @@ const RegisterHook = () => {
           data={dropdownData}
         ></DropdownHook>
         {errors && errors?.job && (
-          <p className="text-red-500 text-xs">{errors.gender.message}</p>
+          <p className="text-xs text-red-500">{errors.gender.message}</p>
         )}
       </div>
       <div className="flex flex-col gap-1 mb-2">
@@ -174,7 +174,7 @@ const RegisterHook = () => {
           ></CheckboxHook>
         </div>
         {errors && errors?.terms && (
-          <p className="text-red-500 text-xs">{errors.terms.message}</p>
+          <p className="text-xs text-red-500">{errors.terms.message}</p>
         )}
       </div>
 
@@ -186,7 +186,7 @@ const RegisterHook = () => {
         }`}
       >
         {isSubmitting ? (
-          <div className="w-5 h-5 border-4 border-white border-t-4 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <div className="w-5 h-5 mx-auto border-4 border-t-4 border-white rounded-full border-t-transparent animate-spin"></div>
         ) : (
           "Submit"
         )}
