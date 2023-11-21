@@ -40,6 +40,7 @@ import SignUpFormHookV2 from "./form/SignUpFormHookV2";
 import SignUpFormHookV3 from "./form/SignUpFormHookV3";
 import Modal from "./components/modal/Modal";
 import ModalPropTypes from "./components/modal/ModalPropTypes";
+import Portal from "./components/Portal";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -92,13 +93,19 @@ function App() {
       {/* <SignUpFormHook></SignUpFormHook> */}
       {/* <SignUpFormHookV2></SignUpFormHookV2> */}
       {/* <SignUpFormHookV3></SignUpFormHookV3> */}
-      <ModalPropTypes open={show}></ModalPropTypes>
-      <button
+      {/* <ModalPropTypes open={show}></ModalPropTypes> */}
+      {/* <button
         onClick={() => setShow(true)}
         className="p-5 m-3 text-white bg-purple-500 rounded-lg"
       >
         Show button
-      </button>
+      </button> */}
+      <Portal visible={true}>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni mollitia
+        ipsum amet voluptates modi quas hic dolore quia reprehenderit, at quo
+        quasi accusamus explicabo itaque facilis consectetur repudiandae. Amet,
+        commodi!
+      </Portal>
     </div>
   );
 }
