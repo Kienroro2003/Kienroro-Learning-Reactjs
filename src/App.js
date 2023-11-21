@@ -41,10 +41,12 @@ import SignUpFormHookV3 from "./form/SignUpFormHookV3";
 import Modal from "./components/modal/Modal";
 import ModalPropTypes from "./components/modal/ModalPropTypes";
 import Portal from "./components/Portal";
+import ModalBase from "./components/modal/ModalBase";
 
 function App() {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   // const { show, nodeRef, setShow } = useClickOutSide();
+  const [openModalBase, setOpenModalBase] = useState(false);
   return (
     <div>
       {/* <button onClick={() => setShow(!show)}>Toggle show</button>
@@ -94,18 +96,29 @@ function App() {
       {/* <SignUpFormHookV2></SignUpFormHookV2> */}
       {/* <SignUpFormHookV3></SignUpFormHookV3> */}
       {/* <ModalPropTypes open={show}></ModalPropTypes> */}
-      {/* <button
-        onClick={() => setShow(true)}
+      <button
+        onClick={() => setOpenModalBase(true)}
         className="p-5 m-3 text-white bg-purple-500 rounded-lg"
       >
         Show button
-      </button> */}
-      <Portal visible={true}>
+      </button>
+      {/* <Portal visible={true}>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni mollitia
         ipsum amet voluptates modi quas hic dolore quia reprehenderit, at quo
         quasi accusamus explicabo itaque facilis consectetur repudiandae. Amet,
         commodi!
-      </Portal>
+      </Portal> */}
+      <ModalBase
+        visible={openModalBase}
+        onClose={() => setOpenModalBase(false)}
+      >
+        <div className="p-10 bg-white rounded-lg w-[350px]">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestiae,
+          tempore sequi et libero iusto at! Perspiciatis illum ad eius
+          consequatur. Voluptas quidem, expedita amet quia laudantium quae
+          architecto asperiores aperiam.
+        </div>
+      </ModalBase>
     </div>
   );
 }
