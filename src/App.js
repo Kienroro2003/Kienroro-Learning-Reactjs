@@ -39,6 +39,7 @@ import SignUpFormHook from "./form/SignUpFormHook";
 import SignUpFormHookV2 from "./form/SignUpFormHookV2";
 import SignUpFormHookV3 from "./form/SignUpFormHookV3";
 import Modal from "./components/modal/Modal";
+import ModalPropTypes from "./components/modal/ModalPropTypes";
 
 function App() {
   const [show, setShow] = useState(false);
@@ -91,7 +92,7 @@ function App() {
       {/* <SignUpFormHook></SignUpFormHook> */}
       {/* <SignUpFormHookV2></SignUpFormHookV2> */}
       {/* <SignUpFormHookV3></SignUpFormHookV3> */}
-      <Modal open={show} handleClose={() => setShow(false)}></Modal>
+      <ModalPropTypes open={show}></ModalPropTypes>
       <button
         onClick={() => setShow(true)}
         className="p-5 m-3 text-white bg-purple-500 rounded-lg"
