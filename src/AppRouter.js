@@ -44,8 +44,6 @@ import ModalBase from "./components/modal/ModalBase";
 import ModelAdvanced from "./components/modal/ModelAdvanced";
 import { CountProvider, useCount } from "./components/context/countContext";
 import { Routes, Route } from "react-router-dom";
-import HeaderMain from "./components/HeaderMain";
-import { useAuth, AuthProvider } from "./components/context/auth-context";
 
 function CountDisplay() {
   const [count] = useCount();
@@ -67,18 +65,20 @@ function Counter() {
   );
 }
 
-function App() {
-  return (
-    // <div className="flex items-center justify-center p-5 gap-x-5">
-    //   <CountProvider>
-    //     <CountDisplay></CountDisplay>
-    //     <Counter></Counter>
-    //   </CountProvider>
-    // </div>
-    <AuthProvider>
-      <HeaderMain></HeaderMain>
-    </AuthProvider>
-  );
+function AppRouter() {
+  // const [show, setShow] = useState(false);
+  // const { show, nodeRef, setShow } = useClickOutSide();
+  // const [openModalBase, setOpenModalBase] = useState(false);
+  // const [openModalBase2, setOpenModalBase2] = useState(false);
+  return {
+    /* <Routes>
+        <Route path="/" element={<HackNewsReducer></HackNewsReducer>}></Route>
+        <Route
+          path="/sign-in"
+          element={<SignUpFormFinalV2></SignUpFormFinalV2>}
+        ></Route>
+      </Routes> */
+  };
 }
 
-export default App;
+export default AppRouter;
