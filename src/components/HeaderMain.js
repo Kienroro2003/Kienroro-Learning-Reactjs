@@ -1,8 +1,10 @@
 import React from "react";
 import { useAuth } from "./context/auth-context";
+import { useGallery } from "./context/gallery-context";
 
 const HeaderMain = () => {
   const { user, setUser } = useAuth();
+  useGallery();
   console.log("HeaderMain ~ user", user);
   return (
     <div className="flex items-center justify-center p-4 bg-white shadow-md">
