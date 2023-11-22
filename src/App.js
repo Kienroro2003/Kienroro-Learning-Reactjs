@@ -4,6 +4,7 @@ import {
   useGallery,
   GalleryProvider,
 } from "./components/context/gallery-context";
+import CartList from "./components/gallery/CartList";
 import PhotoList from "./components/gallery/PhotoList";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <GalleryProvider>
         <HeaderMain></HeaderMain>
         <PhotoList></PhotoList>
+        <CartList></CartList>
       </GalleryProvider>
     </AuthProvider>
   );

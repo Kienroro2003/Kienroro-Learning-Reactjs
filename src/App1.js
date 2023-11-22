@@ -127,7 +127,7 @@ function App() {
           architecto asperiores aperiam.
         </div>
       </ModalBase> */}
-      {/* <ModelAdvanced visible={openModalBase2}>
+      <ModelAdvanced visible={openModalBase2}>
         <div className="relative z-10 w-full p-10 bg-white rounded-lg modal-content max-w-[482px]">
           <span
             className="absolute top-0 right-0 flex items-center justify-center w-10 h-10 p-1 bg-white rounded-full cursor-pointer -translate-y-2/4 translate-x-2/4"
@@ -173,7 +173,7 @@ function App() {
             Sign in
           </button>
         </div>
-      </ModelAdvanced> */}
+      </ModelAdvanced>
     </div>
   );
 }
