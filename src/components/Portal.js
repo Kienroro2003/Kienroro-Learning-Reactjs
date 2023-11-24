@@ -25,11 +25,11 @@ const Portal = ({
       style={containerStyle}
     >
       <div
-        className="absolute inset-0 bg-black overlay bg-opacity-20"
+        className="absolute inset-0 z-[99998] bg-black overlay bg-opacity-20"
         onClick={onClose}
       ></div>
       <div
-        className={`content relative z-10 ${bodyClassName}`}
+        className={`content relative z-[99999] ${bodyClassName}`}
         style={bodyStyle}
       >
         {children}
