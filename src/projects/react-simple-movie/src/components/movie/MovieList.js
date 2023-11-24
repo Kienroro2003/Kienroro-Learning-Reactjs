@@ -3,23 +3,7 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import MovieCard from "./MovieCard";
 import useSWR from "swr";
 import { fetcher } from "../../config";
-// https://api.themoviedb.org/3/movie/now_playing?api_key=95f2419536f533cdaa1dadf83c606027
-// const options = {
-//   method: "GET",
-//   headers: {
-//     accept: "application/json",
-//     Authorization:
-//       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzNmRjZjMwMjAxN2I5NDQyMTNiNGRkYjYxZjYzOWMyOSIsInN1YiI6IjY1NTNlZDM5YWQ1MGYwMDBjZTA4OGY2NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.ie6i6UVpGwYQjlmY_G25T1vC_p6Jrk-5wq_qcDxq5q8",
-//   },
-// };
 
-// fetch(
-//   "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
-//   options
-// )
-//   .then((response) => response.json())
-//   .then((response) => console.log(response))
-//   .catch((err) => console.error(err));
 const MovieList = ({ type = "now_playing" }) => {
   const { data } = useSWR(
     `https://api.themoviedb.org/3/movie/${type}`,

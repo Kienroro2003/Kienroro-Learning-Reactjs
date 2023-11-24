@@ -1,17 +1,27 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import MovieList from "../components/movie/MovieList";
 import useSWR from "swr";
 import { fetcher } from "../config";
 import MovieCard from "../components/movie/MovieCard";
+import useDebounce from "../hooks/useDebounce";
 
 const MoviePage = () => {
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/popular`,
-    fetcher
-  );
+  const [query, setQuery] = useState("");
+  const [url, setUrl] = useState("https://api.themoviedb.org/3/movie/popular");
+  const filterDebounce = useDebounce(query);
+  // const [data, setData] = useState([])
+  const { data } = useSWR(url, fetcher);
   console.log("🚀  ~ file: MovieList.js:25 ~ MovieList ~ data:", data);
+  useEffect(() => {
+    if (filterDebounce) {
+      setUrl(
+        `https://api.themoviedb.org/3/search/movie?query=${filterDebounce}`
+      );
+    } else {
+      setUrl("https://api.themoviedb.org/3/movie/popular");
+    }
+  }, [filterDebounce]);
   const movies = data?.results || [];
-
   return (
     <div className="py-10 page-container">
       <div className="flex mb-10">
@@ -20,6 +30,7 @@ const MoviePage = () => {
             type="text"
             className="w-full p-4 text-white outline-none bg-slate-800"
             placeholder="Type here to search..."
+            onChange={(e) => setQuery(e.target.value)}
           />
         </div>
         <button className="p-4 text-white bg-primary">
