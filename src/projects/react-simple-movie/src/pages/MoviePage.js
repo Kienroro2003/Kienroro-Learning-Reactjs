@@ -10,8 +10,9 @@ const MoviePage = () => {
   const [url, setUrl] = useState("https://api.themoviedb.org/3/movie/popular");
   const filterDebounce = useDebounce(query);
   // const [data, setData] = useState([])
-  const { data } = useSWR(url, fetcher);
+  const { data, error } = useSWR(url, fetcher);
   console.log("🚀  ~ file: MovieList.js:25 ~ MovieList ~ data:", data);
+  const loading = !data && !error;
   useEffect(() => {
     if (filterDebounce) {
       setUrl(
@@ -50,8 +51,12 @@ const MoviePage = () => {
           </svg>
         </button>
       </div>
+      {loading && (
+        <div className="w-10 h-10 mx-auto border-4 border-t-4 rounded-full border-primary border-t-transparent animate-spin"></div>
+      )}
       <div className="grid grid-cols-4 gap-10">
-        {movies.length > 0 &&
+        {!loading &&
+          movies.length > 0 &&
           movies.map((item, index) => {
             return <MovieCard key={index} item={item}></MovieCard>;
           })}
