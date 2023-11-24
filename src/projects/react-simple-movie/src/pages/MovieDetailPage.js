@@ -49,7 +49,7 @@ const MovieDetailPage = () => {
         {overview}
       </p>
       <MovieCredits></MovieCredits>
-      {/* <MovieVideos></MovieVideos> */}
+      <MovieVideos></MovieVideos>
       {/* <MovieSimilar></MovieSimilar> */}
     </div>
   );
@@ -77,6 +77,43 @@ function MovieCredits() {
               alt=""
             />
             <h3 className="text-xl font-medium">{item.name}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function MovieVideos() {
+  const { movieId } = useParams();
+  const { data } = useSWR(
+    `https://api.themoviedb.org/3/movie/${movieId}/videos`,
+    fetcher
+  );
+  if (!data) return null;
+  console.log("🚀 ~ MovieDetailPage ~ data:", data);
+  const { results } = data;
+  if (!results || results.length <= 0) return null;
+  return (
+    <div className="py-10">
+      <div className="flex flex-col gap-10">
+        {results.slice(0, 2).map((item) => (
+          <div className="" key={item.id}>
+            <h3 className="inline-block p-3 mb-5 text-xl font-medium bg-secondary">
+              {item.name}
+            </h3>
+            <div key={item.id} className="w-full aspect-video">
+              <iframe
+                width="864"
+                height="486"
+                src={`https://www.youtube.com/embed/${item.key}`}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="object-fill w-full h-full"
+              ></iframe>
+            </div>
           </div>
         ))}
       </div>
