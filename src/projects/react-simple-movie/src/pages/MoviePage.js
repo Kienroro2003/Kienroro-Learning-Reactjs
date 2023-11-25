@@ -105,9 +105,7 @@ const MoviePage = () => {
   const [itemOffset, setItemOffset] = useState(0);
   const [nextPage, setNextPage] = useState(1);
   const [filter, setFilter] = useState("");
-  const [url, setUrl] = useState(
-    `${tmdb.getMovieList("popular")}?page=${nextPage}`
-  );
+  const [url, setUrl] = useState(tmdb.getMovieList("popular", nextPage));
   const filterDebounce = useDebounce(filter, 500);
   const handleFilterChange = (e) => {
     setFilter(e.target.value);
@@ -116,11 +114,9 @@ const MoviePage = () => {
   const loading = !data && !error;
   useEffect(() => {
     if (filterDebounce) {
-      setUrl(
-        `https://api.themoviedb.org/3/search/movie?query=${filterDebounce}&page=${nextPage}`
-      );
+      setUrl(tmdb.getMovieSearch(filterDebounce, nextPage));
     } else {
-      setUrl(`${tmdb.getMovieList("popular")}?page=${nextPage}`);
+      setUrl(tmdb.getMovieList("popular", nextPage));
     }
   }, [filterDebounce, nextPage]);
   const movies = data?.results || [];

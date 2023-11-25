@@ -18,7 +18,7 @@ const MovieDetailPage = () => {
         <div
           className="w-full h-full bg-no-repeat bg-cover"
           style={{
-            backgroundImage: `url(${tmdb.getMovieMeta(backdrop_path)})`,
+            backgroundImage: `url(${tmdb.imageOriginal(backdrop_path)})`,
           }}
         ></div>
       </div>
@@ -47,46 +47,63 @@ const MovieDetailPage = () => {
       <p className="text-center leading-relaxed max-w-[600px] mx-auto mb-10">
         {overview}
       </p>
-      <MovieCredits></MovieCredits>
+      {/* <MovieCredits></MovieCredits>
       <MovieVideos></MovieVideos>
-      <MovieSimilar></MovieSimilar>
+      <MovieSimilar></MovieSimilar> */}
+      <MovieMeta type="credits"></MovieMeta>
+      <MovieMeta type="videos"></MovieMeta>
+      <MovieMeta type="similar"></MovieMeta>
     </div>
   );
 };
 
-function MovieCredits() {
+function MovieMeta({ type = "videos" }) {
   const { movieId } = useParams();
-  const { data } = useSWR(tmdb.getMovieMeta(movieId, "credits"), fetcher);
-  console.log("🚀 ~ MovieDetailPage ~ data:", data);
+  const { data } = useSWR(tmdb.getMovieMeta(movieId, type), fetcher);
   if (!data) return null;
-  const { cast } = data;
-  if (!cast || cast.length <= 0) return null;
+  if (type === "credits") {
+    const { cast } = data;
+    if (!cast || cast.length <= 0) return null;
+
+    return <MovieCredits cast={cast}></MovieCredits>;
+  } else {
+    const { results } = data;
+    if (!results || results.length <= 0) return null;
+    if (type === "videos") return <MovieVideos results={results}></MovieVideos>;
+    if (type === "similar")
+      return <MovieSimilar results={results}></MovieSimilar>;
+  }
+  return null;
+}
+
+function MovieCredits({ cast }) {
   return (
     <div className="py-10">
       <h2 className="mb-10 text-3xl text-center">Casts</h2>
       <div className="grid grid-cols-4 gap-5">
-        {cast.slice(0, 4).map((item) => (
-          <div className="cast-item" key={item.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/original/${item.profile_path}`}
-              className="w-full h-[350px] object-cover rounded-lg mb-3"
-              alt=""
-            />
-            <h3 className="text-xl font-medium">{item.name}</h3>
-          </div>
-        ))}
+        {cast.slice(0, 4).map((item) => {
+          console.log(item.profile_path);
+          return (
+            <div className="cast-item" key={item.id}>
+              <div className="h-[350px]  mb-3 rounded-lg">
+                {item.profile_path !== null && (
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${item.profile_path}`}
+                    className="object-cover w-full"
+                    alt=""
+                  />
+                )}
+              </div>
+              <h3 className="text-xl font-medium">{item.name}</h3>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
-function MovieVideos() {
-  const { movieId } = useParams();
-  const { data } = useSWR(tmdb.getMovieMeta(movieId, "videos"), fetcher);
-  if (!data) return null;
-  console.log("🚀 ~ MovieDetailPage ~ data:", data);
-  const { results } = data;
-  if (!results || results.length <= 0) return null;
+function MovieVideos({ results }) {
   return (
     <div className="py-10">
       <div className="flex flex-col gap-10">
@@ -114,13 +131,7 @@ function MovieVideos() {
   );
 }
 
-function MovieSimilar() {
-  const { movieId } = useParams();
-  const { data } = useSWR(tmdb.getMovieMeta(movieId, "similar"), fetcher);
-  if (!data) return null;
-  console.log("🚀 ~ MovieDetailPage ~ data:", data);
-  const { results } = data;
-  if (!results || results.length <= 0) return null;
+function MovieSimilar({ results }) {
   return (
     <div className="py-10">
       <h2 className="mb-10 text-3xl font-medium">Similar movies</h2>

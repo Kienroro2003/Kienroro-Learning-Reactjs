@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const options = {
   method: "GET",
   headers: {
@@ -8,12 +10,21 @@ const options = {
 };
 
 const fetcher = (...args) => fetch(...args, options).then((res) => res.json());
+// const fetcher = (url) =>
+//   axios
+//     .get(url, options)
+//     .then((res) => res.data)
+//     .catch((error) => error);
+
 const tmdbEndpoint = "https://api.themoviedb.org/3/movie";
 const tmdb = {
-  getMovieList: (type) => `${tmdbEndpoint}/${type}`,
+  getMovieList: (type, currentPage = 1) =>
+    `${tmdbEndpoint}/${type}?page${currentPage}`,
   image500: (poster_path) => `https://image.tmdb.org/t/p/w500/${poster_path}`,
   getMovieDetails: (movieId) => `${tmdbEndpoint}/${movieId}`,
   getMovieMeta: (movieId, type) => `${tmdbEndpoint}/${movieId}/${type}`,
   imageOriginal: (url) => `https://image.tmdb.org/t/p/original/${url}`,
+  getMovieSearch: (query, currentPage = 1) =>
+    `https://api.themoviedb.org/3/search/movie?query=${query}&page=${currentPage}`,
 };
 export { fetcher, tmdb };
