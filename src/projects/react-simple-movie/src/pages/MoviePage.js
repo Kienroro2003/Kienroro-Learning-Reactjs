@@ -4,25 +4,41 @@ import useSWR from "swr";
 import { fetcher } from "../config";
 import MovieCard from "../components/movie/MovieCard";
 import useDebounce from "../hooks/useDebounce";
+import ReactPaginate from "react-paginate";
+
+const itemsPerPage = 20;
 
 const MoviePage = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageCount, setPageCount] = useState(0);
   const [query, setQuery] = useState("");
   const [url, setUrl] = useState("https://api.themoviedb.org/3/movie/popular");
   const filterDebounce = useDebounce(query);
-  // const [data, setData] = useState([])
   const { data, error } = useSWR(url, fetcher);
-  console.log("🚀  ~ file: MovieList.js:25 ~ MovieList ~ data:", data);
   const loading = !data && !error;
+  console.log("out side");
   useEffect(() => {
+    console.log("useEffect filter");
     if (filterDebounce) {
       setUrl(
-        `https://api.themoviedb.org/3/search/movie?query=${filterDebounce}`
+        `https://api.themoviedb.org/3/search/movie?query=${filterDebounce}&page=${currentPage}`
       );
     } else {
-      setUrl("https://api.themoviedb.org/3/movie/popular");
+      console.log("useEffect filter else");
+      setUrl(`https://api.themoviedb.org/3/movie/popular?page=${currentPage}`);
     }
-  }, [filterDebounce]);
+  }, [filterDebounce, currentPage]);
   const movies = data?.results || [];
+  useEffect(() => {
+    console.log("useEffect data");
+    if (!data || !data.total_results) return;
+    setPageCount(data.total_pages);
+  }, [data]);
+  const handlePageClick = (event) => {
+    setCurrentPage(event.selected + 1);
+  };
+  console.log(data);
+
   return (
     <div className="py-10 page-container">
       <div className="flex mb-10">
@@ -61,6 +77,15 @@ const MoviePage = () => {
             return <MovieCard key={index} item={item}></MovieCard>;
           })}
       </div>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+      />
     </div>
   );
 };
