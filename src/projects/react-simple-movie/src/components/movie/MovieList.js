@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import { SwiperSlide, Swiper } from "swiper/react";
 import MovieCard from "./MovieCard";
 import useSWR from "swr";
-import { fetcher } from "../../config";
+import { fetcher, tmdb } from "../../config";
 
 const MovieList = ({ type = "now_playing" }) => {
-  const { data } = useSWR(
-    `https://api.themoviedb.org/3/movie/${type}`,
-    fetcher
-  );
+  const { data } = useSWR(`${tmdb.getMovieList(type)}`, fetcher);
   console.log("🚀 ~ file: MovieList.js:25 ~ MovieList ~ data:", data);
   const movies = data?.results || [];
   return (

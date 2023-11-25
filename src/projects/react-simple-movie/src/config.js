@@ -8,4 +8,12 @@ const options = {
 };
 
 const fetcher = (...args) => fetch(...args, options).then((res) => res.json());
-export { fetcher };
+const tmdbEndpoint = "https://api.themoviedb.org/3/movie";
+const tmdb = {
+  getMovieList: (type) => `${tmdbEndpoint}/${type}`,
+  image500: (poster_path) => `https://image.tmdb.org/t/p/w500/${poster_path}`,
+  getMovieDetails: (movieId) => `${tmdbEndpoint}/${movieId}`,
+  getMovieMeta: (movieId, type) => `${tmdbEndpoint}/${movieId}/${type}`,
+  imageOriginal: (url) => `https://image.tmdb.org/t/p/original/${url}`,
+};
+export { fetcher, tmdb };
