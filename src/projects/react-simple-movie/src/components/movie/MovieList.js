@@ -8,11 +8,11 @@ import PropTypes from "prop-types";
 import FetchingError from "../errors/FetchingError";
 
 const MovieList = ({ type = "now_playing" }) => {
-  const { showBoundary } = useErrorBoundary();
+  // const { showBoundary } = useErrorBoundary();
   const { data, error } = useSWR(`${tmdb.getMovieList(type)}`, fetcher);
   // if (data && data.hasOwnProperty("success" && !data.success))
   //   showBoundary(data?.status_message);
-  if (error) showBoundary(error);
+  // if (error) showBoundary(error);
   console.log("🚀 ~ MovieList ~ data, error:", data, error);
   const movies = data?.results || [];
 
@@ -36,9 +36,9 @@ MovieList.propTypes = {
 
 export default withErrorBoundary(MovieList, {
   FallbackComponent: FetchingError,
-  onError(error, info) {
-    console.log(error);
-    // Do something with the error
-    // E.g. log to an error logging client here
-  },
+  // onError(error, info) {
+  //   console.log(error);
+  //   // Do something with the error
+  //   // E.g. log to an error logging client here
+  // },
 });

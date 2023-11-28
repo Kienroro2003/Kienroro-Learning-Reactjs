@@ -1,22 +1,12 @@
-import HeaderMain from "./components/HeaderMain";
-import { AuthProvider } from "./components/context/auth-context";
-import {
-  useGallery,
-  GalleryProvider,
-} from "./components/context/gallery-context";
-import CartList from "./components/gallery/CartList";
-import PhotoList from "./components/gallery/PhotoList";
+import React from "react";
+import FetchingData from "./components/advanced-react-hoc/FetchingData";
 
-function App() {
+const App = () => {
   return (
-    <AuthProvider>
-      <GalleryProvider>
-        <HeaderMain></HeaderMain>
-        <PhotoList></PhotoList>
-        <CartList></CartList>
-      </GalleryProvider>
-    </AuthProvider>
+    <>
+      <FetchingData></FetchingData>
+    </>
   );
-}
+};
 
 export default App;
