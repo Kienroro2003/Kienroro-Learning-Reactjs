@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import FetchingData from "./components/advanced-react/hoc/FetchingData";
 import Title from "./components/advanced-react/render-props/Title";
 import HandleValue from "./components/advanced-react/render-props/HandleValue";
@@ -7,9 +7,11 @@ import Editable from "./components/advanced-react/composition/Editable";
 
 import Switch from "./components/switch/Switch";
 import useToggle from "./hooks/useToggle";
+import Counter from "./components/advanced-react/control-props/Counter";
 
 const App = () => {
   const { on, getToggleProps } = useToggle();
+  const [value, setValue] = useState(5);
   return (
     <>
       {/* <FetchingData></FetchingData> */}
@@ -27,7 +29,7 @@ const App = () => {
         architecto porro cumque delectus expedita corrupti, unde vitae excepturi
         sequi laboriosam impedit.
       </Accordion> */}
-      <Switch {...getToggleProps({ on })}></Switch>
+      {/* <Switch {...getToggleProps({ on })}></Switch>
       <br />
       <button
         aria-label="custom-button"
@@ -39,7 +41,13 @@ const App = () => {
         })}
       >
         {on ? "on" : "off"}
-      </button>
+      </button> */}
+      <Counter
+      // value={value}
+      // onChange={(newValue) => {
+      //   setValue((value) => value + newValue);
+      // }}
+      ></Counter>
     </>
   );
 };
