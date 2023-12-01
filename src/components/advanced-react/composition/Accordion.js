@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import useToggle from "./useToggle";
+import AccordionHeader from "./AccordionHeader";
+import AccordionContent from "./AccordionContent";
+import { AccordionProvider } from "./context-accordion";
 
-const Accordion = () => {
-  const { value: show, handleToggleValue: handleToggleShow } = useToggle();
+const Accordion = ({ header, children }) => {
   return (
-    <div>
-      <div className="cursor-pointer header" onClick={handleToggleShow}>
-        Accordion Header
-        <span>+</span>
+    <AccordionProvider>
+      <div className="mb-5">
+        <AccordionHeader>{header}</AccordionHeader>
+        <AccordionContent>{children}</AccordionContent>
       </div>
-      {show && <div className="content">Accordion Content</div>}
-    </div>
+    </AccordionProvider>
   );
 };
 
