@@ -7,7 +7,7 @@ import Editable from "./components/advanced-react/composition/Editable";
 
 import Switch from "./components/switch/Switch";
 import useToggle from "./hooks/useToggle";
-import Counter from "./components/advanced-react/control-props/Counter";
+import Counter from "./components/advanced-react/control-reducer/Counter";
 
 const App = () => {
   const { on, getToggleProps } = useToggle();
@@ -42,12 +42,14 @@ const App = () => {
       >
         {on ? "on" : "off"}
       </button> */}
-      <Counter
+      {/* <Counter
       // value={value}
       // onChange={(newValue) => {
       //   setValue((value) => value + newValue);
       // }}
-      ></Counter>
+      ></Counter> */}
+
+      <Counter></Counter>
     </>
   );
 };
